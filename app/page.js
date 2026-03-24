@@ -1,65 +1,75 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowRightIcon } from "./components/Icons";
+import { getAllPostMeta } from "@/lib/load-posts";
+import PostCard from "./components/PostCard";
+import CTAButton from "./components/CTAButton";
 
-export default function Home() {
+export default async function Home() {
+  const all = await getAllPostMeta();
+  const featured = all.slice(0, 2);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="flex flex-1 flex-col">
+      <section className="mx-auto flex w-full max-w-3xl flex-col px-4 py-14 sm:px-6 lg:px-8">
+        <div className="rounded-2xl border border-zinc-200 bg-white/80 p-8 shadow-sm backdrop-blur dark:border-zinc-700 dark:bg-zinc-900/55">
+          <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
+            ETENTEK · IoT · SCADA · PLC · HMI · Arduino · ESP
           </p>
+          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+            Blog kỹ thuật & review công nghệ
+          </h1>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <CTAButton href="/blog">Vào blog ETENTEK</CTAButton>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </section>
+
+      <section className="mx-auto w-full max-w-3xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              Bài viết nổi bật
+            </h2>
+            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+              Hai bài mới nhất (theo <code className="text-xs">date</code> trong frontmatter).
+            </p>
+          </div>
+          <Link
+            href="/blog"
+            className="text-sm font-medium text-orange-600 hover:underline dark:text-orange-400"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <span className="inline-flex items-center gap-2">
+              Xem tất cả
+              <ArrowRightIcon className="h-4 w-4" />
+            </span>
+          </Link>
         </div>
-      </main>
+
+        <div className="mt-7 grid gap-4 sm:grid-cols-2">
+          {featured.length === 0 ? (
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 sm:col-span-2">
+              Chưa có bài. Thêm file trong <code className="rounded bg-zinc-100 px-1 dark:bg-zinc-800">content/posts/</code>.
+            </p>
+          ) : (
+            featured.map((p) => <PostCard key={p.slug} post={p} />)
+          )}
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-3xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="rounded-2xl border border-zinc-200 bg-gradient-to-br from-orange-50 to-white p-8 dark:border-zinc-700 dark:from-orange-900/18 dark:to-zinc-900/55">
+          <h3 className="text-xl font-semibold text-foreground">
+            Đọc sâu về IoT, SCADA và thiết bị công nghiệp
+          </h3>
+          <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+            Nội dung kỹ thuật rõ ràng, CTA khi review phần cứng.
+          </p>
+          <div className="mt-6">
+            <CTAButton href="/blog">Mở danh sách bài</CTAButton>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
