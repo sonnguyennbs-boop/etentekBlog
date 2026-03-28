@@ -24,7 +24,7 @@ function CartIcon() {
   );
 }
 
-export default function CartLink() {
+export default function CartLink({ className = "", tabIndex }) {
   const [count, setCount] = useState(0);
   const [bump, setBump] = useState(false);
 
@@ -48,7 +48,8 @@ export default function CartLink() {
     <Link
       href="/gio-hang"
       aria-label={`Giỏ hàng (${count} món)`}
-      className="hover:text-foreground"
+      tabIndex={tabIndex}
+      className={`hover:text-foreground ${className}`.trim()}
     >
       <span
         className={`relative inline-flex items-center gap-2 transition-transform duration-200 ${
