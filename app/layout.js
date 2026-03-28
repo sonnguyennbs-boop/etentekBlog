@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
       >
         <ThemeProvider>
           <Header />
-          <main className="flex flex-1 flex-col">{children}</main>
+          <main className="flex min-w-0 flex-1 flex-col">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

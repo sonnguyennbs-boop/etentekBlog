@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function KhamPhaPage() {
   return (
-    <div className="mx-auto flex min-h-0 flex-1 flex-col px-4 py-12 sm:px-6 lg:max-w-3xl lg:px-8">
+    <div className="mx-auto flex min-h-0 min-w-0 flex-1 flex-col px-4 py-12 sm:px-6 lg:max-w-3xl lg:px-8">
       <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
         <Link href="/" className="hover:text-foreground">
           <span className="inline-flex items-center gap-2">

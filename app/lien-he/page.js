@@ -1,17 +1,9 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
 import { ArrowRightIcon } from "../components/Icons";
 
-export default function LienHePage() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [status, setStatus] = useState("idle"); // idle | sent
+const SITE_URL = "https://etentek-blog.vercel.app/";
 
+export default function LienHePage() {
   return (
     <div className="mx-auto flex min-h-0 flex-1 flex-col px-4 py-12 sm:px-6 lg:max-w-3xl lg:px-8">
       <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
@@ -24,84 +16,82 @@ export default function LienHePage() {
       </p>
 
       <h1 className="mt-4 text-3xl font-semibold tracking-tight text-foreground">
-        Liên hệ
+        📞 Liên hệ hợp tác &amp; tư vấn
       </h1>
-      <p className="mt-2 max-w-2xl text-zinc-600 dark:text-zinc-400">
-        Gửi thông tin để chúng tôi phản hồi về sản phẩm/giải pháp hoặc hợp
-        tác.
-      </p>
 
-      <form
-        className="mt-10 space-y-4 rounded-2xl border border-zinc-200 bg-white p-6 dark:border-zinc-700 dark:bg-zinc-900/55"
-        onSubmit={(e) => {
-          e.preventDefault();
-          // Chưa có backend: hiển thị trạng thái tạm thời.
-          setStatus("sent");
-          setTimeout(() => setStatus("idle"), 2500);
-          setForm({ name: "", email: "", message: "" });
-        }}
-      >
-        <div className="grid gap-4 sm:grid-cols-2">
-          <label className="flex flex-col gap-2">
-            <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-              Họ tên
-            </span>
-            <input
-              required
-              value={form.name}
-              onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-              className="rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-orange-500 dark:border-zinc-700 dark:bg-zinc-950/20"
-              placeholder="VD: Nguyễn Văn A"
-            />
-          </label>
-
-          <label className="flex flex-col gap-2">
-            <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-              Email
-            </span>
-            <input
-              required
-              type="email"
-              value={form.email}
-              onChange={(e) =>
-                setForm((f) => ({ ...f, email: e.target.value }))
-              }
-              className="rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-orange-500 dark:border-zinc-700 dark:bg-zinc-950/20"
-              placeholder="VD: a@gmail.com"
-            />
-          </label>
-        </div>
-
-        <label className="flex flex-col gap-2">
-          <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-            Nội dung
+      <div className="mt-8 space-y-6 rounded-2xl border border-zinc-200 bg-white p-6 text-zinc-700 dark:border-zinc-700 dark:bg-zinc-900/55 dark:text-zinc-300">
+        <p className="space-y-1 leading-relaxed">
+          <span className="block">
+            <span className="font-medium text-foreground">Công ty / Thương hiệu:</span>{" "}
+            ETENTEK
           </span>
-          <textarea
-            required
-            rows={5}
-            value={form.message}
-            onChange={(e) =>
-              setForm((f) => ({ ...f, message: e.target.value }))
-            }
-            className="resize-none rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-orange-500 dark:border-zinc-700 dark:bg-zinc-950/20"
-            placeholder="Nhập nội dung bạn cần hỗ trợ..."
-          />
-        </label>
+          <span className="block">
+            <span className="font-medium text-foreground">Người phụ trách:</span> Phú
+            Nguyễn
+          </span>
+        </p>
 
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-          <button
-            type="submit"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-600"
-          >
-            {status === "sent" ? "Đã gửi!" : "Gửi liên hệ"}
-          </button>
+        <ul className="space-y-3 border-t border-zinc-200 pt-6 dark:border-zinc-600/50">
+          <li>
+            <span className="mr-1">📧</span>
+            <span className="font-medium text-foreground">Email:</span>{" "}
+            <a
+              href="mailto:nangluongetentek@gmail.com"
+              className="text-orange-600 underline-offset-2 hover:underline dark:text-orange-400"
+            >
+              nangluongetentek@gmail.com
+            </a>
+          </li>
+          <li>
+            <span className="mr-1">📱</span>
+            <span className="font-medium text-foreground">Hotline/Zalo:</span>{" "}
+            <a
+              href="tel:+84368512498"
+              className="text-orange-600 underline-offset-2 hover:underline dark:text-orange-400"
+            >
+              0368512498
+            </a>
+          </li>
+          <li>
+            <span className="mr-1">🌐</span>
+            <span className="font-medium text-foreground">Website:</span>{" "}
+            <a
+              href={SITE_URL}
+              className="break-all text-orange-600 underline-offset-2 hover:underline dark:text-orange-400"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {SITE_URL}
+            </a>
+          </li>
+        </ul>
 
-          <p className="text-xs text-zinc-500 dark:text-zinc-400">
-            Lưu ý: form hiện chỉ mô phỏng gửi (chưa tích hợp backend).
+        <p className="border-t border-zinc-200 pt-6 dark:border-zinc-600/50">
+          <span className="mr-1">📍</span>
+          <span className="font-medium text-foreground">Địa chỉ:</span> Thành Phố Vinh,
+          Tỉnh Nghệ An, Việt Nam
+        </p>
+
+        <div className="border-t border-zinc-200 pt-6 dark:border-zinc-600/50">
+          <p className="font-medium text-foreground">⏰ Thời gian làm việc:</p>
+          <p className="mt-2">
+            Thứ 2 – Thứ 7: 8:00 – 17:30
           </p>
         </div>
-      </form>
+
+        <div className="border-t border-zinc-200 pt-6 dark:border-zinc-600/50">
+          <p className="font-medium text-foreground">👉 Hỗ trợ:</p>
+          <ul className="mt-3 list-inside list-disc space-y-2">
+            <li>Tư vấn giải pháp điện – tự động hóa</li>
+            <li>Thiết kế &amp; sản xuất thiết bị điện</li>
+            <li>OEM/ODM sản phẩm</li>
+          </ul>
+        </div>
+
+        <p className="border-t border-zinc-200 pt-6 text-sm text-zinc-600 dark:border-zinc-600/50 dark:text-zinc-400">
+          Vui lòng để lại thông tin, chúng tôi sẽ phản hồi trong 24h.
+        </p>
+      </div>
     </div>
   );
 }
-

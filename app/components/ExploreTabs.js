@@ -62,9 +62,9 @@ export default function ExploreTabs() {
 
   return (
     <div aria-label="Danh sách sản phẩm">
-      <div className="flex flex-col gap-3">
-        <div className="flex flex-nowrap gap-3 items-center overflow-x-auto">
-          <label className="flex-1 min-w-[220px] relative">
+      <div className="flex min-w-0 flex-col gap-3">
+        <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:flex-nowrap sm:items-center">
+          <label className="relative min-w-0 flex-1">
             <span className="sr-only">Tìm kiếm nhanh mã tên loại sản phẩm</span>
             <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500">
               <SearchIcon className="h-4 w-4" />
@@ -74,40 +74,42 @@ export default function ExploreTabs() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Tìm kiếm nhanh mã tên loại sản phẩm"
-              className="w-full rounded-xl border border-zinc-200 bg-white px-10 py-3 text-sm text-foreground outline-none placeholder:text-zinc-400 transition-colors focus:border-orange-500 dark:border-zinc-700 dark:bg-zinc-900/50"
+              className="w-full min-w-0 rounded-xl border border-zinc-200 bg-white px-10 py-3 text-sm text-foreground outline-none placeholder:text-zinc-400 transition-colors focus:border-orange-500 dark:border-zinc-700 dark:bg-zinc-900/50"
             />
           </label>
 
-          <label className="flex items-center gap-2">
-            <span className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
-              Loại
-            </span>
-            <select
-              value={platform}
-              onChange={(e) => setPlatform(e.target.value)}
-              className="rounded-xl border border-zinc-200 bg-white px-3 py-3 text-sm text-foreground outline-none transition-colors focus:border-orange-500 dark:border-zinc-700 dark:bg-zinc-900/50"
-              aria-label="Lọc theo loại sản phẩm"
-            >
-              <option value="all">Tất cả</option>
-              <option value="shopee">Shopee</option>
-              <option value="tiktok">TikTok Shop</option>
-            </select>
-          </label>
-          <label className="flex items-center gap-2 whitespace-nowrap">
-            <span className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
-              Giá
-            </span>
-            <select
-              value={priceSort}
-              onChange={(e) => setPriceSort(e.target.value)}
-              className="rounded-xl border border-zinc-200 bg-white px-3 py-3 text-sm text-foreground outline-none transition-colors focus:border-orange-500 dark:border-zinc-700 dark:bg-zinc-900/50"
-              aria-label="Sắp xếp theo giá"
-            >
-              <option value="default">Mặc định</option>
-              <option value="asc">Thấp đến cao</option>
-              <option value="desc">Cao đến thấp</option>
-            </select>
-          </label>
+          <div className="flex min-w-0 flex-wrap items-center gap-3 sm:flex-nowrap sm:shrink-0">
+            <label className="flex min-w-0 items-center gap-2">
+              <span className="shrink-0 text-sm font-medium text-zinc-600 dark:text-zinc-400">
+                Loại
+              </span>
+              <select
+                value={platform}
+                onChange={(e) => setPlatform(e.target.value)}
+                className="min-w-0 max-w-full rounded-xl border border-zinc-200 bg-white px-3 py-3 text-sm text-foreground outline-none transition-colors focus:border-orange-500 dark:border-zinc-700 dark:bg-zinc-900/50"
+                aria-label="Lọc theo loại sản phẩm"
+              >
+                <option value="all">Tất cả</option>
+                <option value="shopee">Shopee</option>
+                <option value="tiktok">TikTok Shop</option>
+              </select>
+            </label>
+            <label className="flex min-w-0 items-center gap-2">
+              <span className="shrink-0 text-sm font-medium text-zinc-600 dark:text-zinc-400">
+                Giá
+              </span>
+              <select
+                value={priceSort}
+                onChange={(e) => setPriceSort(e.target.value)}
+                className="min-w-0 max-w-full rounded-xl border border-zinc-200 bg-white px-3 py-3 text-sm text-foreground outline-none transition-colors focus:border-orange-500 dark:border-zinc-700 dark:bg-zinc-900/50"
+                aria-label="Sắp xếp theo giá"
+              >
+                <option value="default">Mặc định</option>
+                <option value="asc">Thấp đến cao</option>
+                <option value="desc">Cao đến thấp</option>
+              </select>
+            </label>
+          </div>
         </div>
 
         <p className="text-xs text-zinc-600 dark:text-zinc-400">
