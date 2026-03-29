@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getAllSlugs } from "@/lib/load-posts";
 import { resolveCoverImageUrl } from "@/lib/cover-image";
-import CoverImage from "../../components/CoverImage";
+import BlogCoverLightbox from "../../components/BlogCoverLightbox";
 import CTAButton from "../../components/CTAButton";
 import MarkdownBody from "../../components/MarkdownBody";
 import { ArrowRightIcon } from "../../components/Icons";
@@ -69,24 +69,13 @@ export default async function BlogPostPage({ params }) {
       </p>
 
       <section className="mt-5">
-        <div className="relative aspect-[16/7] w-full overflow-hidden rounded-2xl border border-zinc-200/70 dark:border-zinc-800/70">
-          {post.coverImage ? (
-            <CoverImage
-              src={post.coverImage}
-              alt={post.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 768px"
-              priority
-            />
-          ) : (
-            <div
-              className={`h-full w-full bg-gradient-to-br ${getHeroClass(
-                post.hero,
-              )}`}
-            />
-          )}
-        </div>
+        <BlogCoverLightbox
+          src={post.coverImage}
+          alt={post.title}
+          sizes="(max-width: 768px) 100vw, 768px"
+          priority
+          heroClassName={getHeroClass(post.hero)}
+        />
         <h1 className="mt-5 text-3xl font-semibold tracking-tight text-foreground">
           {post.title}
         </h1>

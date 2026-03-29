@@ -2,6 +2,7 @@
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import MarkdownImageLightbox from "./MarkdownImageLightbox";
 
 export default function MarkdownBody({ markdown }) {
   return (
@@ -14,7 +15,6 @@ export default function MarkdownBody({ markdown }) {
         "[&_ul]:mt-4 [&_ul]:list-disc [&_ul]:pl-6",
         "[&_ol]:mt-4 [&_ol]:list-decimal [&_ol]:pl-6",
         "[&_li]:mt-2",
-        "[&_img]:mx-auto [&_img]:mt-4 [&_img]:max-w-full [&_img]:rounded-xl [&_img]:border [&_img]:border-zinc-200 [&_img]:bg-white dark:[&_img]:border-zinc-800 dark:[&_img]:bg-zinc-900/50",
         "[&_a]:font-medium [&_a]:text-orange-600 [&_a]:underline-offset-2 hover:[&_a]:underline dark:[&_a]:text-orange-400",
         "[&_code]:rounded [&_code]:bg-zinc-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm dark:[&_code]:bg-zinc-800",
         "[&_pre]:mt-4 [&_pre]:overflow-x-auto [&_pre]:rounded-lg [&_pre]:border [&_pre]:border-zinc-200 [&_pre]:bg-zinc-50 [&_pre]:p-4 dark:[&_pre]:border-zinc-700 dark:[&_pre]:bg-zinc-900/80",
@@ -26,7 +26,14 @@ export default function MarkdownBody({ markdown }) {
         "[&_hr]:my-10 [&_hr]:border-zinc-200 dark:[&_hr]:border-zinc-700",
       ].join(" ")}
     >
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={{
+          img: (props) => <MarkdownImageLightbox {...props} />,
+        }}
+      >
+        {markdown}
+      </ReactMarkdown>
     </div>
   );
 }

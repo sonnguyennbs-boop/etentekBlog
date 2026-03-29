@@ -5,7 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
 import CartLink from "./CartLink";
-import { CartIcon, FolderIcon, MailIcon, MenuIcon } from "./Icons";
+import {
+  CartIcon,
+  DownloadIcon,
+  FolderIcon,
+  MailIcon,
+  MenuIcon,
+} from "./Icons";
 
 const SIDEBAR_ID = "etentek-nav-sidebar";
 
@@ -92,6 +98,10 @@ export default function Header() {
           <Link href="/blog" tabIndex={tabWhenOpen} className={navLinkClass}>
             <FolderIcon className="h-5 w-5 shrink-0" />
             Blog
+          </Link>
+          <Link href="/tai-xuong" tabIndex={tabWhenOpen} className={navLinkClass}>
+            <DownloadIcon className="h-5 w-5 shrink-0" />
+            Tải xuống
           </Link>
           <Link href="/lien-he" tabIndex={tabWhenOpen} className={navLinkClass}>
             <MailIcon className="h-5 w-5 shrink-0" />
